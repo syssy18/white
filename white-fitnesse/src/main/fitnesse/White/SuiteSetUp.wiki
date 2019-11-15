@@ -1,0 +1,12 @@
+!define CLASSES {target/classes}
+!define PROJECT_ROOT {..}
+!path ${PROJECT_ROOT}/white-core/${CLASSES}
+!path ${PROJECT_ROOT}/white-fitnesse/${CLASSES}
+
+!path ./target/dependency/*.jar
+
+|Import                           |
+|com.cgi.paris.fs.comex.white.fitnesse.fixture|
+
+|Fitnesse spring|
+|run            |

@@ -1,0 +1,124 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.cgi.paris.fs.comex</groupId>
+		<artifactId>white</artifactId>
+		<version>${revision}${changelist}</version>
+	</parent>
+	<artifactId>white-fitnesse</artifactId>
+	<name>White fitnesse</name>
+
+	<properties>
+		<fitnesse.version>20190716</fitnesse.version>
+		<fitnesse.src>src/main/fitnesse</fitnesse.src>
+		<fitnesse.port>5092</fitnesse.port>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+
+			<!-- FitNesse -->
+			<dependency>
+				<groupId>org.fitnesse</groupId>
+				<artifactId>fitnesse</artifactId>
+				<version>${fitnesse.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-jdk14</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+
+		<!-- White -->
+		<dependency>
+			<groupId>com.cgi.paris.fs.comex</groupId>
+			<artifactId>white-core</artifactId>
+		</dependency>
+
+		<!-- FitNesse -->
+		<dependency>
+			<groupId>org.fitnesse</groupId>
+			<artifactId>fitnesse</artifactId>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>pre-integration-test</phase>
+						<configuration>
+							<target>
+								<delete verbose="true">
+									<fileset dir="./target/dependency" includes="${project.parent.artifactId}*.jar"/>
+								</delete>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>fitnesse-standalone</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>fitnesse-standalone</id>
+								<phase>integration-test</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<configuration>
+									<target>
+										<java classname="fitnesseMain.FitNesseMain" classpathref="maven.runtime.classpath" fork="true">
+											<jvmarg line="-Dlogback.configurationFile=logback-fitnesse.xml"/>
+											<arg line="-p ${fitnesse.port}"/>
+											<arg line="-d ${fitnesse.src}"/>
+											<arg line="-r ."/>
+											<arg line="-f ./${fitnesse.src}/plugins.properties"/>
+										</java>
+									</target>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+</project>

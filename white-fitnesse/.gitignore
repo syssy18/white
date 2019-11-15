@@ -1,0 +1,7 @@
+/src/main/fitnesse/FitNesse/
+/src/main/fitnesse/properties
+/src/main/fitnesse/RecentChanges/
+/src/main/fitnesse/files/testResults
+/**/*.zip
+/src/main/fitnesse/RecentChanges.wiki
+/src/main/fitnesse/RerunLastFailures.wiki
