@@ -1,11 +1,11 @@
 package com.cgi.paris.fs.comex.white.fitnesse.fixture;
 
 import com.cgi.paris.fs.comex.white.fitnesse.spring.FitnesseConfiguration;
-import fit.ActionFixture;
+import fitlibrary.DoFixture;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
-public class FitnesseSpring extends ActionFixture {
+public class FitnesseSpring extends DoFixture {
 
     private static ConfigurableApplicationContext context;
 
