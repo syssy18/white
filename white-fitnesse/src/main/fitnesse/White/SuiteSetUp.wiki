@@ -5,8 +5,8 @@
 
 !path ./target/dependency/*.jar
 
-|Import                           |
+|Import                                       |
 |com.cgi.paris.fs.comex.white.fitnesse.fixture|
 
 |Fitnesse spring|
-|run            |
+|run|
