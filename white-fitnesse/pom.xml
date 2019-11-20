@@ -12,7 +12,7 @@
 
     <properties>
         <fitnesse.version>20190716</fitnesse.version>
-        <fitlibrary.version>20080812</fitlibrary.version>
+        <dbfit.version>3.2.0</dbfit.version>
         <fitnesse.src>src/main/fitnesse</fitnesse.src>
         <fitnesse.port>5092</fitnesse.port>
     </properties>
@@ -33,9 +33,27 @@
                 </exclusions>
             </dependency>
             <dependency>
-                <groupId>org.fitnesse</groupId>
-                <artifactId>fitlibrary</artifactId>
-                <version>${fitlibrary.version}</version>
+                <groupId>com.github.dbfit</groupId>
+                <artifactId>dbfit</artifactId>
+                <version>${dbfit.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.fitnesse</groupId>
+                        <artifactId>fitnesse</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.hsqldb</groupId>
+                        <artifactId>hsqldb</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.postgresql</groupId>
+                        <artifactId>postgresql</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
         </dependencies>
@@ -52,7 +70,11 @@
         <!-- FitNesse -->
         <dependency>
             <groupId>org.fitnesse</groupId>
-            <artifactId>fitlibrary</artifactId>
+            <artifactId>fitnesse</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.dbfit</groupId>
+            <artifactId>dbfit</artifactId>
         </dependency>
 
     </dependencies>
@@ -109,12 +131,12 @@
                                     <goal>run</goal>
                                 </goals>
                                 <configuration>
-									<target>
-										<java classname="fitnesseMain.FitNesseMain" classpathref="maven.runtime.classpath" fork="true">
-											<jvmarg line="-Dlogback.configurationFile=logback-fitnesse.xml"/>
-											<arg line="-p ${fitnesse.port}"/>
-											<arg line="-d ${fitnesse.src}"/>
-											<arg line="-r ."/>
+                                    <target>
+                                        <java classname="fitnesseMain.FitNesseMain" classpathref="maven.runtime.classpath" fork="true">
+                                            <jvmarg line="-Dlogback.configurationFile=logback-fitnesse.xml"/>
+                                            <arg line="-p ${fitnesse.port}"/>
+                                            <arg line="-d ${fitnesse.src}"/>
+                                            <arg line="-r ."/>
                                             <arg line="-f ./${fitnesse.src}/plugins.properties"/>
                                         </java>
                                     </target>
