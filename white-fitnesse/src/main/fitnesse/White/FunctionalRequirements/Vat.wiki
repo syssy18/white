@@ -1,0 +1,6 @@
+---
+Test
+---
+|Compute Vat                      |
+|amount|french vat ?|germain vat ?|
+|1000  |200         |190          |
