@@ -9,12 +9,12 @@ public class GreetingService {
     public Greeting hello(final String name) {
         final Greeting greeting = new Greeting();
         greeting.setName(name);
-        hello(greeting);
+        this.hello(greeting);
         return greeting;
     }
 
     public void hello(final Greeting greeting) {
-        greeting.setMessage("Hello : " + greeting.getName());
+        greeting.setMessage("Hello " + greeting.getName());
     }
 
 }

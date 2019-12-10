@@ -1,6 +1,6 @@
 ---
 Test
 ---
-|Greets with hello      |
-|name     |message ?    |
+|Greets with hello        |
+|name     |message ?      |
 |Alexandre|Hello Alexandre|
