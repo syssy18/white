@@ -1,0 +1,13 @@
+---
+Test
+---
+|Given tranches   |
+|min  |max  |rate |
+|0    |9700 |0    |
+|9700 |14500|0.135|
+|14500|0    |0.30 |
+
+|Compute french income tax|
+|income   |income tax ?   |
+|30000    |2385           |
+|15000    |495            |
