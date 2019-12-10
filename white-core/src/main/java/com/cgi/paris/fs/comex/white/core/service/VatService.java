@@ -1,8 +1,11 @@
 package com.cgi.paris.fs.comex.white.core.service;
 
+import org.springframework.stereotype.Service;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+@Service
 public class VatService {
 
     private static final BigDecimal FRENCH_VAT = new BigDecimal("0.2");
